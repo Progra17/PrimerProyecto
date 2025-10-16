@@ -20,11 +20,11 @@ public class PrimeraPantalla extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_primera_pantalla);
 
-        //Con el findViewId se tiene acceso al widget desde la vista
+        /*Con el findViewId se tiene acceso al widget desde la vista
         Button elboton = (Button) findViewById(R.id.button);
         elboton.setOnClickListener(HizoClicEnElBoton()); //Reacciona al clic, es decir, cuando de un clic va a pasar algo, la funcion es el parentesis
         //elboton.setText("Nuevo texto");
-
+*/
 // EN CLASE VOLVER A VER LO DE COMO EXPORTAR LA INFO DE GITHUB Y LO DE APPCOMPATACTIVITY
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -32,7 +32,7 @@ public class PrimeraPantalla extends AppCompatActivity {
             return insets;
         });
     }
-
+/*
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -57,5 +57,5 @@ public class PrimeraPantalla extends AppCompatActivity {
             Intent i = new Intent(PrimeraPantalla.this, SegundaActividad.class);
             startActivity(i);
         };
-    }
+    }*/
 }
