@@ -2,5 +2,10 @@
     <string name="app_name">PrimerProyecto</string>
     <string name="usuario">Usuario</string>
     <string name="contraseña">Contraseña</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="registrar">Registrar</string>
+    <string name="edad">Edad</string>
+    <string name="nombre">Nombre</string>
+    <string name="correo">Correo</string>
 
 </resources>

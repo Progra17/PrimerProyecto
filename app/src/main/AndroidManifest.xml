@@ -12,12 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PrimerProyecto">
         <activity
-            android:name=".SegundaActividad"
+            android:name=".FormularioRegistro"
             android:exported="false" />
 
         <!-- Este fragmento es el que indica cual será la pantalla inicial-->
         <activity
-            android:name=".PrimeraPantalla"
+            android:name=".Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
