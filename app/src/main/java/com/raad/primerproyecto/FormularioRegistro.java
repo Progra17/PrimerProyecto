@@ -42,12 +42,53 @@ public class FormularioRegistro extends AppCompatActivity {
             EditText etEdad = findViewById(R.id.etEdad);
             EditText etCorreo = findViewById(R.id.etCorreo);
 
+            String strNombre = etNombre.getText().toString();
+            String strContra = etContra.getText().toString();
+            String strCorreo = etCorreo.getText().toString();
+            String strEdad = etEdad.getText().toString();
+
+
+            //Validamos que los campos no puedan estar vacios
+            if(strNombre.isBlank()){
+                Toast.makeText(FormularioRegistro.this,"NOMBRE VACIO",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if(strEdad.isBlank()){
+                Toast.makeText(FormularioRegistro.this,"EDAD INVALIDA",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            int edad = Integer.parseInt(strEdad);
+            if (edad <= 0) {
+                Toast.makeText(FormularioRegistro.this, "EDAD INVALIDA", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if(strCorreo.isBlank()){
+                Toast.makeText(FormularioRegistro.this,"CORREO VACIO",Toast.LENGTH_SHORT).show();
+                return;
+            } else if (!strCorreo.contains("@")) {
+                Toast.makeText(FormularioRegistro.this,"CORREO NO VALIDO",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if(strContra.isBlank()){
+                Toast.makeText(FormularioRegistro.this,"CONTRASEÑA VACIA",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+
+
+
             //Creamos el objeto Usuario
             Usuario usuario = new Usuario();
-            usuario.setNombre(etNombre.getText().toString());
-            usuario.setEdad(Integer.parseInt(etEdad.getText().toString()));
-            usuario.setCorreo(etCorreo.getText().toString());
-            usuario.setContra(etContra.getText().toString());
+            usuario.setNombre(strNombre);
+            usuario.setEdad(edad);
+            usuario.setCorreo(strCorreo);
+            usuario.setContra(strContra);
+
+
 
             //Crear en la base de datos
             DbHelper db = new DbHelper(FormularioRegistro.this);
