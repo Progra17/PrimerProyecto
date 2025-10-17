@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,22 +15,15 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class Login extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        //btnIngresar.setOnClickListener(Ingresar());
 
-        EditText etUsuario = findViewById(R.id.etUsuario);
-        EditText etContra = findViewById(R.id.etContra);
         Button btnIngresar = findViewById(R.id.btnIngresar);
         Button btnRegistrar = findViewById(R.id.btnRegistrar);
-
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -39,51 +33,8 @@ public class Login extends AppCompatActivity {
 
 
         btnRegistrar.setOnClickListener(Registrar());
+        btnIngresar.setOnClickListener(Ingresar());
 
-
-
-        /*Con el findViewId se tiene acceso al widget desde la vista
-        Button elboton = (Button) findViewById(R.id.button);
-        elboton.setOnClickListener(HizoClicEnElBoton()); //Reacciona al clic, es decir, cuando de un clic va a pasar algo, la funcion es el parentesis
-        //elboton.setText("Nuevo texto");
-
-
-    }*/
-
-
-
-    /*Metodo para ingresar a la sesion
-    private View.OnClickListener Ingresar() {
-        return v -> {
-
-        };
-    }*/
-/*
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.i("EM","Regresando de la pausa");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i("EM","Poniendo en pausa");
-    }
-
-    //boilerplate code buscar termino
-
-    //Con esta funcion hago que cuando le da clic cambia el texto
-    private View.OnClickListener HizoClicEnElBoton() {
-
-        return v -> {
-            Button elboton = (Button) findViewById(R.id.button);
-            elboton.setText("Nuevo Texto");
-
-            Intent i = new Intent(PrimeraPantalla.this, SegundaActividad.class);
-            startActivity(i);
-        };
-    }*/
     }
 
     //Metodo para registrar usuario
@@ -91,6 +42,39 @@ public class Login extends AppCompatActivity {
         return v -> {
             Intent i = new Intent(Login.this, FormularioRegistro.class);
             startActivity(i);
+        };
+    }
+
+    //Metodo para ingresar a la sesion
+    private View.OnClickListener Ingresar() {
+        return v -> {
+            //Encontramos nuestros campos
+            EditText etUsuario = findViewById(R.id.etUsuario);
+            EditText etContra = findViewById(R.id.etContra);
+
+            //Transformamos los datos a tipo texto
+            String correo = etUsuario.getText().toString();
+            String contra = etContra.getText().toString();
+
+            //Si algun campo esta vacio, le informamos al usuario
+            if (correo.isEmpty() || contra.isEmpty()) {
+                Toast.makeText(Login.this, "Por favor ingrese correo y contraseña", Toast.LENGTH_SHORT).show();
+                return; //Regresamos y evitamos que se ejecute el codigo de validacion
+            }
+
+            //Creamos un objeto de la base de datos para poder llamar al metodo de validacion de login
+            DbHelper db = new DbHelper(Login.this);
+            boolean resultadoLogin = db.validarLogin(correo,contra);
+
+            if(resultadoLogin){
+                //Abrimos la pantalla principal ya que se validaron las credenciales
+                Intent i = new Intent(Login.this,PantallaPrincipal.class);
+                startActivity(i);
+                //Se cierra la actividad de Login
+                finish();
+            }else{
+                Toast.makeText(Login.this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+            }
         };
     }
 }

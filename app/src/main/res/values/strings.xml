@@ -7,5 +7,6 @@
     <string name="edad">Edad</string>
     <string name="nombre">Nombre</string>
     <string name="correo">Correo</string>
+    <string name="cancelar">Cancelar</string>
 
 </resources>
