@@ -8,5 +8,10 @@
     <string name="nombre">Nombre</string>
     <string name="correo">Correo</string>
     <string name="cancelar">Cancelar</string>
+    <string name="titulo">Titulo</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="selecciona_fecha">Selecciona fecha</string>
+    <string name="fecha">Fecha</string>
+    <string name="notas_guardadas">NOTAS GUARDADAS</string>
 
 </resources>
